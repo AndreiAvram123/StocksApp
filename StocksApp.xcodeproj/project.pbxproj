@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,16 @@
 		7527DDFD29941731008064FE /* StocksAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DDFC29941731008064FE /* StocksAppTests.swift */; };
 		7527DE0729941731008064FE /* StocksAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE0629941731008064FE /* StocksAppUITests.swift */; };
 		7527DE0929941731008064FE /* StocksAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE0829941731008064FE /* StocksAppUITestsLaunchTests.swift */; };
+		7527DE17299418C5008064FE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE16299418C5008064FE /* NetworkManager.swift */; };
+		7527DE1A29941CE6008064FE /* SearchRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE1929941CE6008064FE /* SearchRepo.swift */; };
+		7527DE1D2994200D008064FE /* SearchSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE1C2994200D008064FE /* SearchSymbol.swift */; };
+		7527DE1F29942133008064FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE1E29942133008064FE /* Constants.swift */; };
+		7527DE2329943502008064FE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE2229943502008064FE /* SearchViewModel.swift */; };
+		7527DE2629944963008064FE /* SearchSymbolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE2529944963008064FE /* SearchSymbolResponse.swift */; };
+		7527DE2829945C3B008064FE /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE2729945C3B008064FE /* StockView.swift */; };
+		7527DE2B2994613B008064FE /* StockViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE2A2994613B008064FE /* StockViewViewModel.swift */; };
+		7527DE2D2994616F008064FE /* CompanyRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE2C2994616F008064FE /* CompanyRepo.swift */; };
+		7527DE30299463E4008064FE /* CompanyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7527DE2F299463E4008064FE /* CompanyProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +54,16 @@
 		7527DE0229941731008064FE /* StocksAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StocksAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7527DE0629941731008064FE /* StocksAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksAppUITests.swift; sourceTree = "<group>"; };
 		7527DE0829941731008064FE /* StocksAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7527DE16299418C5008064FE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		7527DE1929941CE6008064FE /* SearchRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepo.swift; sourceTree = "<group>"; };
+		7527DE1C2994200D008064FE /* SearchSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbol.swift; sourceTree = "<group>"; };
+		7527DE1E29942133008064FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7527DE2229943502008064FE /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		7527DE2529944963008064FE /* SearchSymbolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSymbolResponse.swift; sourceTree = "<group>"; };
+		7527DE2729945C3B008064FE /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
+		7527DE2A2994613B008064FE /* StockViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewViewModel.swift; sourceTree = "<group>"; };
+		7527DE2C2994616F008064FE /* CompanyRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyRepo.swift; sourceTree = "<group>"; };
+		7527DE2F299463E4008064FE /* CompanyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyProfile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +114,8 @@
 		7527DDEA2994172C008064FE /* StocksApp */ = {
 			isa = PBXGroup;
 			children = (
+				7527DE20299434D9008064FE /* UI */,
+				7527DE15299418AD008064FE /* Engine */,
 				7527DDEB2994172C008064FE /* StocksAppApp.swift */,
 				7527DDED2994172C008064FE /* ContentView.swift */,
 				7527DDEF29941730008064FE /* Assets.xcassets */,
@@ -125,6 +147,78 @@
 				7527DE0829941731008064FE /* StocksAppUITestsLaunchTests.swift */,
 			);
 			path = StocksAppUITests;
+			sourceTree = "<group>";
+		};
+		7527DE15299418AD008064FE /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE1B29941F2C008064FE /* Models */,
+				7527DE1829941CB2008064FE /* Repos */,
+				7527DE16299418C5008064FE /* NetworkManager.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		7527DE1829941CB2008064FE /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE1929941CE6008064FE /* SearchRepo.swift */,
+				7527DE2C2994616F008064FE /* CompanyRepo.swift */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
+		7527DE1B29941F2C008064FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE2E29946363008064FE /* Company */,
+				7527DE2429944943008064FE /* Search */,
+				7527DE1C2994200D008064FE /* SearchSymbol.swift */,
+				7527DE1E29942133008064FE /* Constants.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7527DE20299434D9008064FE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE292994608F008064FE /* FinancialItemView */,
+				7527DE21299434EB008064FE /* Search */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7527DE21299434EB008064FE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE2229943502008064FE /* SearchViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		7527DE2429944943008064FE /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE2529944963008064FE /* SearchSymbolResponse.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		7527DE292994608F008064FE /* FinancialItemView */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE2729945C3B008064FE /* StockView.swift */,
+				7527DE2A2994613B008064FE /* StockViewViewModel.swift */,
+			);
+			path = FinancialItemView;
+			sourceTree = "<group>";
+		};
+		7527DE2E29946363008064FE /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				7527DE2F299463E4008064FE /* CompanyProfile.swift */,
+			);
+			path = Company;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,7 +301,7 @@
 				};
 			};
 			buildConfigurationList = 7527DDE32994172C008064FE /* Build configuration list for PBXProject "StocksApp" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -257,8 +351,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7527DE2629944963008064FE /* SearchSymbolResponse.swift in Sources */,
+				7527DE17299418C5008064FE /* NetworkManager.swift in Sources */,
+				7527DE2D2994616F008064FE /* CompanyRepo.swift in Sources */,
+				7527DE2329943502008064FE /* SearchViewModel.swift in Sources */,
+				7527DE2B2994613B008064FE /* StockViewViewModel.swift in Sources */,
 				7527DDEE2994172C008064FE /* ContentView.swift in Sources */,
 				7527DDEC2994172C008064FE /* StocksAppApp.swift in Sources */,
+				7527DE30299463E4008064FE /* CompanyProfile.swift in Sources */,
+				7527DE1D2994200D008064FE /* SearchSymbol.swift in Sources */,
+				7527DE2829945C3B008064FE /* StockView.swift in Sources */,
+				7527DE1A29941CE6008064FE /* SearchRepo.swift in Sources */,
+				7527DE1F29942133008064FE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
