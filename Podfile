@@ -7,6 +7,7 @@ target 'StocksApp' do
 
   # Pods for StocksApp
    pod 'R.swift'
+   pod 'Factory'
   target 'StocksAppTests' do
     inherit! :search_paths
     # Pods for testing

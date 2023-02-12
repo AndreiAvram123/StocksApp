@@ -1,4 +1,4 @@
 
 "homeScreen.welcomeHeader.helloUser" = "Hi %@";
 "homeScreen.welcomeHeader.welcome" = "Welcome to TradeWise";
-
+"homeScreen.portofolioPerformence.totalBalance" = "Your total balance";

@@ -14,6 +14,10 @@ struct UIStyles {
         static let font: Font = Font(R.font.robotoRegular(size: 16)!)
         static let color = Color.black
     }
+    struct BodyMedium {
+        static let font: Font = Font(R.font.robotoRegular(size: 18)!)
+        static let color: Color = Color(R.color.lightGray()!)
+    }
     struct Headline {
         static let font : Font = Font(R.font.robotoBold(size: 20)!)
         static let color = Color.black

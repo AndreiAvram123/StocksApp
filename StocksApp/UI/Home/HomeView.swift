@@ -14,6 +14,10 @@ struct HomeView: View {
                 WelcomeHeader(username: "Andrei Avram")
                 Spacer()
             }
+            HStack {
+                PortfolioPerformanceOverview()
+                Spacer()
+            }
             Spacer()
         }.padding(UIStyles.Dimens.spaceLarge).padding([.top], UIStyles.Dimens.spaceXLarge)
         

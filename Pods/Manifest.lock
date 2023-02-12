@@ -1,16 +1,20 @@
 PODS:
+  - Factory (1.3.6)
   - R.swift (7.2.4)
 
 DEPENDENCIES:
+  - Factory
   - R.swift
 
 SPEC REPOS:
   trunk:
+    - Factory
     - R.swift
 
 SPEC CHECKSUMS:
+  Factory: cd65aeedf349b1869274b4910d832f6f07724782
   R.swift: 681bb9135f482e7a81d9d27445b837fef5467e11
 
-PODFILE CHECKSUM: 11db8c05cd8dc914b4df6d1a428f081ed604b5b9
+PODFILE CHECKSUM: d67f8ab68786e3139995eff6f4d473df08663cfb
 
 COCOAPODS: 1.11.3

@@ -54,9 +54,16 @@ struct _R {
     }
 
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 2 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 3 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
+
+      /// en translation: Your total balance
+      ///
+      /// Key: homeScreen.portofolioPerformence.totalBalance
+      ///
+      /// Locales: en
+      var homeScreenPortofolioPerformenceTotalBalance: RswiftResources.StringResource { .init(key: "homeScreen.portofolioPerformence.totalBalance", tableName: "Localizable", source: source, developmentValue: "Your total balance", comment: nil) }
 
       /// en translation: Hi %@
       ///
@@ -74,15 +81,27 @@ struct _R {
     }
   }
 
-  /// This `_R.color` struct is generated, and contains static references to 2 colors.
+  /// This `_R.color` struct is generated, and contains static references to 6 colors.
   struct color {
     let bundle: Foundation.Bundle
 
     /// Color `AccentColor`.
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
 
-    /// Color `Color`.
-    var color: RswiftResources.ColorResource { .init(name: "Color", path: [], bundle: bundle) }
+    /// Color `Forestgreen`.
+    var forestgreen: RswiftResources.ColorResource { .init(name: "Forestgreen", path: [], bundle: bundle) }
+
+    /// Color `LavaRed`.
+    var lavaRed: RswiftResources.ColorResource { .init(name: "LavaRed", path: [], bundle: bundle) }
+
+    /// Color `LightGray`.
+    var lightGray: RswiftResources.ColorResource { .init(name: "LightGray", path: [], bundle: bundle) }
+
+    /// Color `Pearl`.
+    var pearl: RswiftResources.ColorResource { .init(name: "Pearl", path: [], bundle: bundle) }
+
+    /// Color `ShamrockGreen`.
+    var shamrockGreen: RswiftResources.ColorResource { .init(name: "ShamrockGreen", path: [], bundle: bundle) }
   }
 
   /// This `_R.font` struct is generated, and contains static references to 18 fonts.

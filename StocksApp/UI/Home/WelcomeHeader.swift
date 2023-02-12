@@ -19,7 +19,6 @@ struct WelcomeHeader: View {
                     .font(UIStyles.Headline.font)
                     .foregroundColor(UIStyles.Headline.color)
 
-                Spacer()
         }
     }
 }
