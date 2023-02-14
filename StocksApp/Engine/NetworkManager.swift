@@ -12,7 +12,6 @@ class NetworkManager {
 
     private let session: URLSession = URLSession.shared
 
-
     func performRequest( requestURL: URL) -> AnyPublisher<Data, Error> {
         session.dataTaskPublisher(for: requestURL)
             .tryMap({ (data: Data, response: URLResponse) in

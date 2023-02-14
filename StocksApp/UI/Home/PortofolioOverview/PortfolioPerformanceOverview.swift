@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Shimmer
+import Charts
+
 
 struct PortfolioPerformanceOverview: View {
     var localStorage = LocalStorage()
@@ -32,6 +34,7 @@ struct PortfolioPerformanceOverview: View {
 private struct SuccessBody: View {
     var data: PortofolioPerformanceOverviewModel
     var viewModel: PortofolioPerformanceViewModel
+   
 
     var body: some View {
             Text(R.string.localizable.homeScreenPortofolioPerformenceTotalBalance)
@@ -40,6 +43,7 @@ private struct SuccessBody: View {
 
             HStack {
                 Text(viewModel.formatToUnit(amount: data.currentAmount))
+
                 PortfolioOverviewPerformanceChange(
                     data: data,
                     viewModel: viewModel

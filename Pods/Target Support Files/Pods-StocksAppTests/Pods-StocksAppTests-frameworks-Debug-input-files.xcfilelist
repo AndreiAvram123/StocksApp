@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-StocksAppTests/Pods-StocksAppTests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Factory/Factory.framework
+${BUILT_PRODUCTS_DIR}/R.swift/RswiftResources.framework

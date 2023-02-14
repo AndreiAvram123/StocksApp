@@ -10,12 +10,12 @@ import Foundation
 struct PortofolioPerformanceOverviewModel : Codable{
     let currentAmount: Int
     let amountInvested: Int
-    var procentageChange: Double {
+    private var _procentageChange: Double {
         let percentageChangeWithDecimals = ((Double(currentAmount) / Double(amountInvested)) -  1) * 100
         return (percentageChangeWithDecimals * 100).rounded() / 100
     }
     var procentageChangeString: String {
-        return String(format: "%.2f", procentageChange)
+        return String(format: "%.2f", _procentageChange)
     }
     var amountChange: Int {
         return abs(currentAmount - amountInvested)

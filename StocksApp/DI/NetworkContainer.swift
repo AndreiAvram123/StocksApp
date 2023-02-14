@@ -14,8 +14,8 @@ extension Container {
     static let networkManager = Factory<NetworkManager> {
         NetworkManager()
     }
-    static let stockWatcher = Factory<StockWatcher> {
-        StockWatcher()
+    static let stockWatcher = Factory<FinancialItemsWatcher> {
+        FinancialItemsWatcher()
     }
 
     static let portfolioRepository = Factory<PortfolioRepo> {

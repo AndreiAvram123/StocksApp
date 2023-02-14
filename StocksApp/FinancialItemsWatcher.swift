@@ -10,33 +10,45 @@ import Combine
 import Factory
 import Starscream
 
-class StockWatcher {
+class FinancialItemsWatcher {
     private let url = "wss://ws.finnhub.io?token=cfhtr4hr01qq9nt1lbb0cfhtr4hr01qq9nt1lbbg"
     private var sockets: [WebSocket] = []
-    @Injected (Container.encoder) var encoder: JSONEncoder
+    @Injected(Container.encoder) var encoder: JSONEncoder
+    @Injected(Container.decoder) var decoder: JSONDecoder
 
-    func watchCollection(stockCollection: [String]) -> AnyPublisher<String, Error>  {
-        let subject = PassthroughSubject<String, Error>()
+    func watchCollection(financialItems: [String]) -> AnyPublisher<[FinancialItemUpdate], Error>  {
+        let subject = PassthroughSubject<[FinancialItemUpdate], Error>()
         let request = URLRequest(url: URL(string : url)!)
         let socket = WebSocket(request: request)
         sockets.append(socket)
         socket.onEvent = { event in
             switch event {
             case .connected(_) :
-                stockCollection.forEach { stockSymbol in
+                financialItems.forEach { stockSymbol in
                     let message =  WsSubscribeMessage(symbol: stockSymbol)
                     do {
                         if let jsonData: String = String(data: try self.encoder.encode(message), encoding: .utf8) {
                             socket.write(string: jsonData)
                         }
                     } catch {
-
+                        print(error)
                     }
                 }
             case .disconnected(_, _):
                 subject.send(completion: .failure(WSErrors.disconnected))
             case .text(let string):
-                subject.send(string)
+                do {
+                    let rawUpdate = try self.decoder.decode(FinancialItemsUpdateDTO.self, from: Data(string.utf8))
+                    var update: [FinancialItemUpdate] = [FinancialItemUpdate]()
+                    rawUpdate.data.forEach { financialItem in
+                        if !update.contains(financialItem) {
+                            update.append(financialItem)
+                        }
+                    }
+                    subject.send(update)
+                } catch {
+                    print(error)
+                }
             case .cancelled:
                 subject.send(completion: .failure(WSErrors.cancelled))
             case .error(let error):

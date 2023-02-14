@@ -10,7 +10,7 @@ import SwiftUI
 struct WelcomeHeader: View {
     var username: String
     var body: some View {
-        VStack (alignment : .leading) {
+        VStack (alignment : .leading ,spacing: 0) {
                 Text(R.string.localizable.homeScreenWelcomeHeaderHelloUser(username))
                     .font(UIStyles.BodySmall.font)
                     .foregroundColor(UIStyles.BodySmall.color)
@@ -18,6 +18,7 @@ struct WelcomeHeader: View {
                 Text(R.string.localizable.homeScreenWelcomeHeaderWelcome())
                     .font(UIStyles.Headline.font)
                     .foregroundColor(UIStyles.Headline.color)
+                    .padding(.top, UIStyles.Dimens.spaceXXXSmall)
 
         }
     }

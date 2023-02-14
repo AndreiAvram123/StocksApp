@@ -17,7 +17,8 @@ struct HomeView: View {
             HStack {
                 PortfolioPerformanceOverview()
                 Spacer()
-            }
+            }.padding(.top, UIStyles.Dimens.spaceMedium)
+            PortfolioPerformanceChart().padding(.top)
             Spacer()
         }.padding(UIStyles.Dimens.spaceLarge).padding([.top], UIStyles.Dimens.spaceXLarge)
         

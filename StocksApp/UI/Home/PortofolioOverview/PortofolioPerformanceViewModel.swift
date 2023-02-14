@@ -17,18 +17,39 @@ class PortofolioPerformanceViewModel : ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
-    enum ViewState {
+    enum AmountViewState {
         case initial;
         case loading;
         case error;
         case success(data : PortofolioPerformanceOverviewModel)
     }
 
-    @Published var viewState: ViewState = .initial
+    enum ChartViewState {
+        case initial;
+        case loading;
+        case error;
+        case success(data : [PortfolioPerformanceHistoryEntry])
+    }
+
+    @Published var viewState: AmountViewState = .initial
+    @Published var chartViewState: ChartViewState = .initial
 
     func getPortofolioPerformance() {
         viewState = .loading
-        stockWatcher.watchCollection(stockCollection: ["BINANCE:BTCUSDT"])
+        portfolioRepo.fetchPortfolio()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                if case .failure(let error) = completion {
+                    print(error)
+                    self.viewState = .error
+                }
+            } receiveValue: { portfolio in
+                self.chartViewState = .success(data: portfolio.performanceHistory)
+                self.watchPortfolio(portfolio: portfolio)
+            }.store(in: &cancellables)
+    }
+    private func watchPortfolio(portfolio: PortfolioModel){
+        stockWatcher.watchCollection(financialItems: portfolio.stocks)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -37,17 +58,18 @@ class PortofolioPerformanceViewModel : ObservableObject {
                 case .finished:
                     print("Finished")
                 }
-            }) { value in
-                print(value)
+            }) { data in
+                self.viewState = .success(data: PortofolioPerformanceOverviewModel(currentAmount: Int(data.first!.currentPrice * 100), amountInvested: 1000) )
             }.store(in: &cancellables)
     }
+
     func formatToUnit(amount: Int) -> String {
         return currencyFormatter.formatToUnit(amount: amount,
                                               currency: localStorage.preferredCurrency)
     }
 }
 class PortofolioPerformanceViewModelMock : PortofolioPerformanceViewModel {
-    var mockViewState: ViewState = .initial
+    var mockViewState: AmountViewState = .initial
 
     override func getPortofolioPerformance() {
         viewState = mockViewState

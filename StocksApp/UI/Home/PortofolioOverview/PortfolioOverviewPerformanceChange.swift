@@ -21,7 +21,7 @@ struct PortfolioOverviewPerformanceChange: View {
                 .background(Color(R.color.pearl))
                 .clipShape(Capsule())
         } else {
-            Text("↑ \(formattedAmountChange) (\(data.procentageChange)%)")
+            Text("↑ \(formattedAmountChange) (\(data.procentageChangeString)%)")
                 .padding(UIStyles.Dimens.spaceSmall)
                 .foregroundColor(Color(R.color.forestgreen))
                 .background(Color(R.color.pearl))

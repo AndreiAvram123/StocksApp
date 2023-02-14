@@ -6,8 +6,10 @@ target 'StocksApp' do
   use_frameworks!
 
   # Pods for StocksApp
-   pod 'R.swift'
-   pod 'Factory'
+
+  pod "Factory"
+  pod 'R.swift'
+
   target 'StocksAppTests' do
     inherit! :search_paths
     # Pods for testing
