@@ -15,4 +15,10 @@ extension Container {
     static let localStorage = Factory<LocalStorage> {
         LocalStorage()
     }
+    static let decoder = Factory<JSONDecoder> {
+        JSONDecoder()
+    }
+    static let encoder = Factory<JSONEncoder> {
+        JSONEncoder()
+    }
 }

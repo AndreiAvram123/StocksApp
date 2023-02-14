@@ -14,26 +14,12 @@ struct PortfolioPerformanceOverview: View {
     @ObservedObject var viewModel: PortofolioPerformanceViewModel = PortofolioPerformanceViewModel()
 
     var body: some View {
-            HStack {
+        VStack (alignment: .leading) {
                 switch viewModel.viewState {
                 case let .success(data) :
-                    VStack {
-                        Text(R.string.localizable.homeScreenPortofolioPerformenceTotalBalance)
-                            .font(UIStyles.BodyMedium.font)
-                            .foregroundColor(UIStyles.BodyMedium.color)
-                        Text(currencyFormatter.formatToUnit(amount: data.currentAmount, currency: Currency.defaultCurrency))
-                    }
-                    PortfolioOverviewPerformanceChange(
-                        amount: 500 ,
-                        percentage: 10,
-                        negativePerformance: true,
-                        viewModel: viewModel
-                    )
+                    SuccessBody(data: data, viewModel: viewModel)
                 case .loading :
-                    Text("$25,901.0.41")
-                        .font(UIStyles.BodyMedium.font)
-                        .redacted(reason: .placeholder)
-                        .shimmering()
+                    SuccessBody(data : PortfolioPerformanceOverviewPreview.mockData,viewModel: viewModel).redacted(reason: .placeholder).shimmering()
                 default :
                     EmptyView()
                 }
@@ -43,16 +29,48 @@ struct PortfolioPerformanceOverview: View {
     }
 }
 
-struct TotalBalanceHome_Previews: PreviewProvider {
+private struct SuccessBody: View {
+    var data: PortofolioPerformanceOverviewModel
+    var viewModel: PortofolioPerformanceViewModel
+
+    var body: some View {
+            Text(R.string.localizable.homeScreenPortofolioPerformenceTotalBalance)
+                .font(UIStyles.BodyMedium.font)
+                .foregroundColor(UIStyles.BodyMedium.color)
+
+            HStack {
+                Text(viewModel.formatToUnit(amount: data.currentAmount))
+                PortfolioOverviewPerformanceChange(
+                    data: data,
+                    viewModel: viewModel
+                )
+        }
+    }
+}
+
+struct PortfolioPerformanceOverviewPreview: PreviewProvider {
+    static var mockData = PortofolioPerformanceOverviewModel(currentAmount: 10000, amountInvested: 12000)
+
     static var  viewModelLoaded:  PortofolioPerformanceViewModel {
         let viewModel = PortofolioPerformanceViewModelMock()
-        viewModel.mockViewState = .success(data: PortofolioPerformanceOverviewModel(currentAmount: 1000, amountInvested: 12000, procentageChange: 10))
+        viewModel.mockViewState = .success(data: mockData)
+        return viewModel
+    }
+    static var viewModelLoading: PortofolioPerformanceViewModel {
+        let viewModel = PortofolioPerformanceViewModelMock()
+        viewModel.mockViewState = .loading
         return viewModel
     }
 
     static var previews: some View {
-        PortfolioPerformanceOverview(
-            viewModel: viewModelLoaded
-        )
+        Group {
+            PortfolioPerformanceOverview(
+                viewModel: viewModelLoaded
+            )
+            PortfolioPerformanceOverview(
+                viewModel: viewModelLoading
+            )
+        }
+
     }
 }

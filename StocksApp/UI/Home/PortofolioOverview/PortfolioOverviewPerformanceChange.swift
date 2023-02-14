@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct PortfolioOverviewPerformanceChange: View {
-    var amount: Int
-    var percentage: Int
-    var negativePerformance: Bool
+    var data: PortofolioPerformanceOverviewModel
     var viewModel: PortofolioPerformanceViewModel
-
+    var formattedAmountChange: String {
+        return viewModel.formatToUnit(amount: data.amountChange)
+    }
     var body: some View {
-        let formattedAmount = viewModel.formatToUnit(amount: amount)
-        if negativePerformance {
-            Text("↓ -\(formattedAmount) (\(percentage)%)")
-                .padding()
+        if data.isNegativePerformance {
+            Text("↓ -\(formattedAmountChange) (\(data.procentageChangeString)%)")
+                .padding(UIStyles.Dimens.spaceSmall)
                 .foregroundColor(Color(R.color.lavaRed))
                 .background(Color(R.color.pearl))
                 .clipShape(Capsule())
         } else {
-            Text("↑ \(formattedAmount) (\(percentage)%)")
-                .padding()
+            Text("↑ \(formattedAmountChange) (\(data.procentageChange)%)")
+                .padding(UIStyles.Dimens.spaceSmall)
                 .foregroundColor(Color(R.color.forestgreen))
                 .background(Color(R.color.pearl))
                 .clipShape(Capsule())
@@ -32,12 +31,20 @@ struct PortfolioOverviewPerformanceChange: View {
 }
 
 struct PortofolioChange_Previews: PreviewProvider {
+    static var mockData = PortofolioPerformanceOverviewModel(currentAmount: 1000, amountInvested: 12000)
+
     static var previews: some View {
-        PortfolioOverviewPerformanceChange(
-            amount: 1000,
-            percentage : 10,
-            negativePerformance: true,
-            viewModel: PortofolioPerformanceViewModel()
-        )
+        Group {
+            PortfolioOverviewPerformanceChange(
+                data:mockData,
+                viewModel: PortofolioPerformanceViewModel()
+            )
+            PortfolioOverviewPerformanceChange(
+                data: mockData,
+                viewModel: PortofolioPerformanceViewModel()
+            )
+            .redacted(reason: .placeholder)
+            .shimmering()
+        }
     }
 }

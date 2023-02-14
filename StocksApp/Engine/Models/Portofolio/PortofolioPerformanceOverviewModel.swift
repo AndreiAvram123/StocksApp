@@ -7,8 +7,20 @@
 
 import Foundation
 
-struct PortofolioPerformanceOverviewModel {
+struct PortofolioPerformanceOverviewModel : Codable{
     let currentAmount: Int
     let amountInvested: Int
-    let procentageChange: Double
+    var procentageChange: Double {
+        let percentageChangeWithDecimals = ((Double(currentAmount) / Double(amountInvested)) -  1) * 100
+        return (percentageChangeWithDecimals * 100).rounded() / 100
+    }
+    var procentageChangeString: String {
+        return String(format: "%.2f", procentageChange)
+    }
+    var amountChange: Int {
+        return abs(currentAmount - amountInvested)
+    }
+    var isNegativePerformance: Bool {
+        return currentAmount < amountInvested
+    }
 }

@@ -23,6 +23,10 @@ struct UIStyles {
         static let color = Color.black
     }
     struct Dimens {
+        static let spaceXXXSmall = CGFloat(2)
+        static let spaceXXSmall = CGFloat(4)
+        static let spaceXSmall = CGFloat(6)
+        static let spaceSmall = CGFloat(8)
         static let spaceMedium = CGFloat(16)
         static let spaceLarge = CGFloat(24)
         static let spaceXLarge = CGFloat(32)
