@@ -13,7 +13,7 @@ import Charts
 struct PortfolioPerformanceOverview: View {
     var localStorage = LocalStorage()
     let currencyFormatter = CurrencyFormatterImpl()
-    @ObservedObject var viewModel: PortofolioPerformanceViewModel = PortofolioPerformanceViewModel()
+    @ObservedObject var viewModel: PortofolioPerformanceViewModel
 
     var body: some View {
         VStack (alignment: .leading) {

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var viewModel: PortofolioPerformanceViewModel = PortofolioPerformanceViewModel()
+
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
@@ -15,10 +17,14 @@ struct HomeView: View {
                 Spacer()
             }
             HStack {
-                PortfolioPerformanceOverview()
+                PortfolioPerformanceOverview(
+                viewModel: viewModel
+                )
                 Spacer()
             }.padding(.top, UIStyles.Dimens.spaceMedium)
-            PortfolioPerformanceChart().padding(.top)
+            PortfolioPerformanceChart(
+                viewModel: viewModel
+            ).padding(.top)
             Spacer()
         }.padding(UIStyles.Dimens.spaceLarge).padding([.top], UIStyles.Dimens.spaceXLarge)
         
