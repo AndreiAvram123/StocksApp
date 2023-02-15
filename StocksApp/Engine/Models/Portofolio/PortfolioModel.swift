@@ -8,6 +8,6 @@
 import Foundation
 
 struct PortfolioModel : Codable {
-    var stocks: [String]
+    var financialItems: [PortfolioFinancialItem]
     var performanceHistory: [PortfolioPerformanceHistoryEntry]
 }

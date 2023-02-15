@@ -9,6 +9,9 @@ target 'StocksApp' do
 
   pod "Factory"
   pod 'R.swift'
+  pod 'SDWebImageSwiftUI'
+  pod 'SDWebImageSVGCoder'
+
 
   target 'StocksAppTests' do
     inherit! :search_paths

@@ -16,16 +16,16 @@ class FinancialItemsWatcher {
     @Injected(Container.encoder) var encoder: JSONEncoder
     @Injected(Container.decoder) var decoder: JSONDecoder
 
-    func watchCollection(financialItems: [String]) -> AnyPublisher<[FinancialItemUpdate], Error>  {
-        let subject = PassthroughSubject<[FinancialItemUpdate], Error>()
+    func watchCollection(financialItems: [FinancialItem]) -> AnyPublisher<[FinancialWSUpdate], Error>  {
+        let subject = PassthroughSubject<[FinancialWSUpdate], Error>()
         let request = URLRequest(url: URL(string : url)!)
         let socket = WebSocket(request: request)
         sockets.append(socket)
         socket.onEvent = { event in
             switch event {
             case .connected(_) :
-                financialItems.forEach { stockSymbol in
-                    let message =  WsSubscribeMessage(symbol: stockSymbol)
+                financialItems.forEach { item in
+                    let message =  WsSubscribeMessage(symbol: item.symbol)
                     do {
                         if let jsonData: String = String(data: try self.encoder.encode(message), encoding: .utf8) {
                             socket.write(string: jsonData)
@@ -39,7 +39,7 @@ class FinancialItemsWatcher {
             case .text(let string):
                 do {
                     let rawUpdate = try self.decoder.decode(FinancialItemsUpdateDTO.self, from: Data(string.utf8))
-                    var update: [FinancialItemUpdate] = [FinancialItemUpdate]()
+                    var update: [FinancialWSUpdate] = [FinancialWSUpdate]()
                     rawUpdate.data.forEach { financialItem in
                         if !update.contains(financialItem) {
                             update.append(financialItem)

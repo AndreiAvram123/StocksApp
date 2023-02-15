@@ -21,6 +21,11 @@ extension Container {
     static let portfolioRepository = Factory<PortfolioRepo> {
         PortfolioRepoImpl()
     }
+
+    static let companyRepo = Factory<CompanyRepo> {
+        CompanyRepoImpl()
+    }
+
     static let firestore = Factory<Firestore> {
         Firestore.firestore()
     }

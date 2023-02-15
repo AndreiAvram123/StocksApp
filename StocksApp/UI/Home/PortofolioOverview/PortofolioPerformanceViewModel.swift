@@ -49,7 +49,7 @@ class PortofolioPerformanceViewModel : ObservableObject {
             }.store(in: &cancellables)
     }
     private func watchPortfolio(portfolio: PortfolioModel){
-        stockWatcher.watchCollection(financialItems: portfolio.stocks)
+        stockWatcher.watchCollection(financialItems: portfolio.financialItems)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {

@@ -7,5 +7,7 @@
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-Bold.ttf</string>
 	</array>
+	<key>firebase_performance_collection_deactivated</key>
+	<true/>
 </dict>
 </plist>

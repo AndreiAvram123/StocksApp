@@ -3,4 +3,206 @@
    uuid = "97B5B0DE-FAC8-4E05-A01F-01DBD01893F3"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14974857-F030-4C1A-813D-7538862513DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StocksApp/UI/Home/PotofolioItemsOverview/HomePortofolioItemsOverview.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE8A68D6-7FC9-4CB5-B7C2-F3E7AF09FA09"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StocksApp/UI/Home/PotofolioItemsOverview/HomePortofolioItemsOverview.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2505C558-D92E-44CA-A110-35ED7DF48114"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "HomePortfolioItemsViewModel"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 97822ef5fe19f46f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of StocksApp.HomePortfolioItemsViewModel.viewState : StocksApp.HomePortfolioItemsViewModel.ViewState"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - e18f0e8577fdfbc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.viewState.getter : StocksApp.HomePortfolioItemsViewModel.ViewState"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 93719e5381854fa8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.viewState.setter : StocksApp.HomePortfolioItemsViewModel.ViewState"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 127dc0a1063f4bbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.viewState.modify : StocksApp.HomePortfolioItemsViewModel.ViewState"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - ad05ae59622ef55f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.viewState.modify : StocksApp.HomePortfolioItemsViewModel.ViewState with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 7f9ab0968be1efeb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.$viewState.getter : Combine.Published&lt;StocksApp.HomePortfolioItemsViewModel.ViewState&gt;.Publisher"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 7f9ab0968be1efeb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.$viewState.setter : Combine.Published&lt;StocksApp.HomePortfolioItemsViewModel.ViewState&gt;.Publisher"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 2c589245a4b63b90"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.$viewState.modify : Combine.Published&lt;StocksApp.HomePortfolioItemsViewModel.ViewState&gt;.Publisher"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 5e4511054b542ac6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.$viewState.modify : Combine.Published&lt;StocksApp.HomePortfolioItemsViewModel.ViewState&gt;.Publisher with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "2505C558-D92E-44CA-A110-35ED7DF48114 - 35ae87807135feba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StocksApp.HomePortfolioItemsViewModel.init() -&gt; StocksApp.HomePortfolioItemsViewModel"
+                  moduleName = "StocksApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andreia/Desktop/StocksApp/StocksApp/UI/Home/PotofolioItemsOverview/HomePortfolioItemsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "632">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -62,8 +62,8 @@
             filePath = "StocksApp/Engine/Repos/CompanyRepo.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "fetchCompanyProfileBySymbol(symbol:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "StocksApp/UI/FinancialItemView/StockViewViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "getCompanyProfileBySymbol(symbol:)"
             landmarkType = "7">
          </BreakpointContent>

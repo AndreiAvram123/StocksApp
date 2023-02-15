@@ -81,12 +81,15 @@ struct _R {
     }
   }
 
-  /// This `_R.color` struct is generated, and contains static references to 6 colors.
+  /// This `_R.color` struct is generated, and contains static references to 8 colors.
   struct color {
     let bundle: Foundation.Bundle
 
     /// Color `AccentColor`.
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
+
+    /// Color `BlueChalk`.
+    var blueChalk: RswiftResources.ColorResource { .init(name: "BlueChalk", path: [], bundle: bundle) }
 
     /// Color `Forestgreen`.
     var forestgreen: RswiftResources.ColorResource { .init(name: "Forestgreen", path: [], bundle: bundle) }
@@ -102,6 +105,9 @@ struct _R {
 
     /// Color `ShamrockGreen`.
     var shamrockGreen: RswiftResources.ColorResource { .init(name: "ShamrockGreen", path: [], bundle: bundle) }
+
+    /// Color `StormDust`.
+    var stormDust: RswiftResources.ColorResource { .init(name: "StormDust", path: [], bundle: bundle) }
   }
 
   /// This `_R.font` struct is generated, and contains static references to 18 fonts.

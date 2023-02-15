@@ -8,7 +8,11 @@
 import Combine
 import Foundation
 
-class CompanyRepo {
+protocol CompanyRepo {
+    func fetchCompanyProfileBySymbol(symbol: String) -> AnyPublisher<CompanyProfile, Error>
+}
+
+class CompanyRepoImpl : CompanyRepo {
 
     func fetchCompanyProfileBySymbol(symbol: String) -> AnyPublisher<CompanyProfile, Error> {
         let networkManager = NetworkManager()

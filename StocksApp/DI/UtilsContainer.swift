@@ -7,6 +7,7 @@
 
 import Foundation
 import Factory
+import OSLog
 
 extension Container {
     static let currencyFormatter = Factory<CurrencyFormatter> {
@@ -20,5 +21,8 @@ extension Container {
     }
     static let encoder = Factory<JSONEncoder> {
         JSONEncoder()
+    }
+    static let logger = Factory<Logger> {
+        Logger()
     }
 }

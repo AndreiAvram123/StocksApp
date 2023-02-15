@@ -6,10 +6,11 @@
 
 import Foundation
 import Combine
+import Factory
 
 class StockViewViewModel : ObservableObject {
 
-    private let companyRepo: CompanyRepo = CompanyRepo()
+    @Injected(Container.companyRepo) var companyRepo: CompanyRepo
     private var cancellables = Set<AnyCancellable>()
 
     enum ViewState {
