@@ -19,7 +19,7 @@ struct PortfolioPerformanceChart: View {
             case .success(let data) :
                 SuccessBody(historyEntries: data)
             case .loading :
-                SuccessBody(historyEntries: ScreenPreview.mockData)
+                SuccessBody(historyEntries: PortofolioPerformanceViewModelMock.chartPreviewData)
                     .redacted(reason: .placeholder)
                     .shimmering()
             default :
@@ -32,7 +32,7 @@ struct PortfolioPerformanceChart: View {
 
 private struct SuccessBody : View {
     var historyEntries: [PortfolioPerformanceHistoryEntry]
-    let yMarkValues = stride(from: 0, to: 18000, by: 2000).map { $0 }
+
     var body : some View {
 
         Chart(historyEntries) { entry in
@@ -48,7 +48,9 @@ private struct SuccessBody : View {
             .interpolationMethod(.catmullRom)
 
         }.chartYAxis {
-            AxisMarks(values : yMarkValues) {
+            AxisMarks(values : .automatic(desiredCount: 5,
+                                          roundLowerBound: true,
+                                          roundUpperBound: true)) {
                 AxisGridLine()
                 AxisTick()
                 AxisValueLabel()
@@ -60,37 +62,29 @@ private struct SuccessBody : View {
                 AxisTick()
                 AxisValueLabel(format: .dateTime.day())
             }
-        }.frame(height: 250)
+        }.frame(height: 150)
     }
 }
 
 struct ScreenPreview: PreviewProvider {
-    static let today = Date()
-   static var oneWeekIncrement: DateComponents {
-        var comp = DateComponents()
-        comp.day = 7
-        return comp
-    }
-
-    static  var tomorrow: Date {
-        return  Calendar.current.date(byAdding: oneWeekIncrement, to: today)!
-    }
-
-    static var mockData: [PortfolioPerformanceHistoryEntry] { [
-        PortfolioPerformanceHistoryEntry(datetime: today,
-                                         amount: 10000),
-        PortfolioPerformanceHistoryEntry(datetime: tomorrow,
-                                         amount: 14000)
-    ]
-    }
     static var successViewModel : PortofolioPerformanceViewModel {
         let viewModel = PortofolioPerformanceViewModel()
-        viewModel.chartViewState = .success(data: mockData)
+        viewModel.chartViewState = .success(data: PortofolioPerformanceViewModelMock.chartPreviewData)
+        return viewModel
+    }
+    static var loadingViewModel : PortofolioPerformanceViewModel {
+        let viewModel = PortofolioPerformanceViewModel()
+        viewModel.chartViewState = .loading
         return viewModel
     }
     static var previews: some View {
-        PortfolioPerformanceChart(
-            viewModel: successViewModel
-        ).padding()
+        Group {
+            PortfolioPerformanceChart(
+                viewModel: successViewModel
+            )
+            PortfolioPerformanceChart(
+                viewModel: loadingViewModel
+            )
+        }
     }
 }

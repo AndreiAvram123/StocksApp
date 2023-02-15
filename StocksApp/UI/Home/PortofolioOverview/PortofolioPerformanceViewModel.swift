@@ -74,4 +74,31 @@ class PortofolioPerformanceViewModelMock : PortofolioPerformanceViewModel {
     override func getPortofolioPerformance() {
         viewState = mockViewState
     }
+
+
+    private static var today = Date()
+
+    private static var oneDayIncrement: DateComponents {
+        var comp = DateComponents()
+        comp.day = 1
+        return comp
+    }
+    private static var twoDayIncrement: DateComponents {
+        var comp = DateComponents()
+        comp.day = 2
+        return comp
+    }
+
+
+    private static var tomorrow: Date {
+        return Calendar.current.date(byAdding: oneDayIncrement, to: today)!
+    }
+
+    static var chartPreviewData: [PortfolioPerformanceHistoryEntry] { [
+        PortfolioPerformanceHistoryEntry(datetime: Calendar.current.date(byAdding: oneDayIncrement, to: today)!,
+                                         amount: 10000),
+        PortfolioPerformanceHistoryEntry(datetime: Calendar.current.date(byAdding: twoDayIncrement, to: today)!,
+                                         amount: 14000)
+    ]
+    }
 }
