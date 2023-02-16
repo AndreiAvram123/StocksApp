@@ -15,6 +15,7 @@ class FinancialItemsWatcher {
     private var sockets: [WebSocket] = []
     @Injected(Container.encoder) var encoder: JSONEncoder
     @Injected(Container.decoder) var decoder: JSONDecoder
+    private var lastUpdateTime: Date? = nil
 
     func watchCollection(financialItems: [FinancialItem]) -> AnyPublisher<[ItemPriceUpdate], Error>  {
         let subject = PassthroughSubject<[ItemPriceUpdate], Error>()
@@ -45,7 +46,15 @@ class FinancialItemsWatcher {
                             update.append(financialItem)
                         }
                     }
-                    subject.send(update)
+                    if let lastUpdateTimeUnwrapped = self.lastUpdateTime {
+                        let secondsSinceLastUpdate = Calendar.current.dateComponents([.second], from: lastUpdateTimeUnwrapped,to: Date()).second!
+                        if secondsSinceLastUpdate > 1 {
+                            subject.send(update)
+                            self.lastUpdateTime = Date()
+                        }
+                    } else {
+                        self.lastUpdateTime = Date()
+                    }
                 } catch {
                     print(error)
                 }

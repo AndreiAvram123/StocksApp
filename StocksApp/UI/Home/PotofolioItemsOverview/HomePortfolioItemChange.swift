@@ -10,10 +10,11 @@ import SwiftUI
 struct HomePortfolioItemChange: View {
     var amountChange: Double
     var procentageChange: Double
+    var isNegativeChange: Bool
 
 
     var body: some View {
-        if procentageChange < 0  {
+        if isNegativeChange {
             Text("↓ -\(amountChange.twoDecimalString()) (\(String(procentageChange.twoDecimalString()))%)")
                 .padding(UIStyles.Dimens.spaceSmall)
                 .foregroundColor(Color(R.color.lavaRed))
@@ -33,10 +34,10 @@ struct HomePortfolioItemChange_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             HomePortfolioItemChange(
-                amountChange: 1000, procentageChange: 10
+                amountChange: 1000, procentageChange: 10 ,isNegativeChange: false
             )
             HomePortfolioItemChange(
-                amountChange: 1000, procentageChange: -10
+                amountChange: 1000, procentageChange: 10, isNegativeChange: true
             )
         }
     }

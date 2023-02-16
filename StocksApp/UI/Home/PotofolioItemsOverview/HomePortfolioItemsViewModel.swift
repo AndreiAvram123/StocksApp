@@ -15,11 +15,12 @@ class HomePortfolioItemsViewModel : ObservableObject {
     @Injected(Container.companyRepo) var companyRepo: CompanyRepo
     @Injected(Container.stockRepo) var stockRepo: StockRepo
     @Injected(Container.logger) var logger: Logger
+    @Injected(Container.stockWatcher) var itemsWatcher: FinancialItemsWatcher
 
     enum ViewState {
         case initial
         case loading
-        case success(data: [HomePortfolioItemModel])
+        case success(data: [PortfolioItemModel])
         case error
     }
     private var cancellables = Set<AnyCancellable>()
@@ -37,6 +38,7 @@ class HomePortfolioItemsViewModel : ObservableObject {
                 //todo
                 //modify to Stock class
                 self.getPortfolioItemsData(portfolioModel: portofolioModel)
+
             }.store(in: &cancellables)
 
     }
@@ -66,17 +68,50 @@ class HomePortfolioItemsViewModel : ObservableObject {
                 }
             } receiveValue: { companiesProfile, itemsSymbolWithQuote in
 
-                let portfolioItems: [HomePortfolioItemModel] = companiesProfile.compactMap { companyProfile in
+                let portfolioItems: [PortfolioItemModel] = companiesProfile.compactMap { companyProfile in
                         //try to find the company with the given quote
                         guard let symbolWithQuote = itemsSymbolWithQuote.first(where: { symbolWithQuote in
                             symbolWithQuote.0 == companyProfile.ticker
                         }) else {
                             return nil
                         }
-                    return HomePortfolioItemModel(companyProfile: companyProfile , quote: symbolWithQuote.1)
+                    return PortfolioItemModel(companyProfile: companyProfile , quote: symbolWithQuote.1)
                 }
                 self.viewState = .success(data: portfolioItems)
+                self.watchPortfolioItems(portfolioItems: portfolioItems)
             }.store(in: &cancellables)
+    }
+
+    private func watchPortfolioItems(portfolioItems : [PortfolioItemModel]) {
+        let itemsToWatch = portfolioItems.map { PlainFinancialItem(
+            symbol : $0.companyProfile.ticker)
+        }
+
+        itemsWatcher.watchCollection(financialItems: itemsToWatch)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case let .failure(error):
+                    print(error)
+                case .finished :
+                    print("")
+                }
+            } receiveValue: { update in
+                if case .success(let currentData) = self.viewState {
+                    let newData = currentData.map { oldItem in
+                        PortfolioItemModel(
+                            companyProfile: oldItem.companyProfile,
+                            quote: oldItem.quote,
+                            priceUpdate: update.first(where: { priceUpdate in
+                                priceUpdate.symbol == oldItem.companyProfile.ticker
+                            })
+                        )
+                    }
+                    self.viewState = .success(data: newData)
+                    print(newData)
+                }
+            }.store(in: &cancellables)
+
     }
 }
 class HomePortfolioItemsViewModelMock : HomePortfolioItemsViewModel {

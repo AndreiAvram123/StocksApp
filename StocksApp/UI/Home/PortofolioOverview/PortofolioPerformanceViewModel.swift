@@ -45,7 +45,7 @@ class PortofolioPerformanceViewModel : ObservableObject {
                 }
             } receiveValue: { portfolio in
                 self.chartViewState = .success(data: portfolio.performanceHistory)
-                self.watchPortfolio(portfolio: portfolio)
+            //    self.watchPortfolio(portfolio: portfolio)
             }.store(in: &cancellables)
     }
     private func watchPortfolio(portfolio: PortfolioModel){

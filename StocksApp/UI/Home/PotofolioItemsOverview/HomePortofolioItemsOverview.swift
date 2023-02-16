@@ -39,7 +39,7 @@ struct HomePortofolioItemsOverview: View {
 }
 
 private struct SuccessState : View {
-    var data: [HomePortfolioItemModel]
+    var data: [PortfolioItemModel]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
@@ -47,7 +47,10 @@ private struct SuccessState : View {
                 ForEach(data, id: \.companyProfile.ticker) { item in
                      HomePortfolioItem(
                         companyProfile: item.companyProfile,
-                        quote: item.quote
+                        currentPrice: item.currentPrice,
+                        percentageChange: 5,
+                        amountChange: item.change,
+                        isNegativeChange: item.isNegativeChange
                      )
                 }
             }
@@ -59,9 +62,9 @@ struct HomePortofolioItemsOverview_Previews: PreviewProvider {
     static var successViewModel: HomePortfolioItemsViewModel {
         let viewModel = HomePortfolioItemsViewModelMock()
         viewModel.mockState = .success(data: [
-            HomePortfolioItemModel.mockInstance,
-            HomePortfolioItemModel.mockInstance,
-            HomePortfolioItemModel.mockInstance,
+            PortfolioItemModel.mockInstance,
+            PortfolioItemModel.mockInstance,
+            PortfolioItemModel.mockInstance,
         ])
         return viewModel
     }

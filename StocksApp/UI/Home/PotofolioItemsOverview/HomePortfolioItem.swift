@@ -10,7 +10,10 @@ import SDWebImageSwiftUI
 
 struct HomePortfolioItem: View {
     var companyProfile: CompanyProfile
-    @State var quote: StockQuote
+    var currentPrice: Double
+    var percentageChange: Double
+    var amountChange: Double
+    var isNegativeChange: Bool
 
     var body : some View {
         VStack(alignment: .leading) {
@@ -33,11 +36,13 @@ struct HomePortfolioItem: View {
                 }.padding(.leading, UIStyles.Dimens.spaceSmall)
             }
             HStack(){
-                Text(String(quote.currentPrice))
+                Text(currentPrice.twoDecimalString())
                     .font(UIStyles.Headline.font)
                     .foregroundColor(UIStyles.Headline.color)
                 HomePortfolioItemChange(
-                    amountChange: quote.change, procentageChange: quote.precentageChange
+                    amountChange: amountChange,
+                    procentageChange: percentageChange,
+                    isNegativeChange: isNegativeChange
                 )
             }
         }.padding().background(Color(R.color.blueChalk)).clipShape(RoundedRectangle(cornerRadius: 10))
@@ -46,7 +51,10 @@ struct HomePortfolioItem: View {
 
 struct HomePortfolioItem_Previews: PreviewProvider {
     static var previews: some View {
-        HomePortfolioItem(companyProfile: CompanyProfile.mockInstance(),
-                          quote:StockQuote.mockInstance).padding()
+        HomePortfolioItem(
+            companyProfile: CompanyProfile.mockInstance(),
+            currentPrice: 150,
+            percentageChange: 5, amountChange: 10,isNegativeChange: false
+        ).padding()
     }
 }
