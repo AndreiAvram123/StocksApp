@@ -13,7 +13,8 @@ class PortofolioPerformanceViewModel : ObservableObject {
     @Injected(Container.currencyFormatter) private var currencyFormatter
     @Injected(Container.localStorage) private var localStorage
     @Injected(Container.portfolioRepo) private var portfolioRepo
-    @Injected(Container.stockWatcher) private var stockWatcher
+    @Injected(Container.financialItemsWatcher) private var financialItemsWatcher
+    @Injected(Container.stockRepo) private var stockRepo
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -35,6 +36,7 @@ class PortofolioPerformanceViewModel : ObservableObject {
     @Published var chartViewState: ChartViewState = .initial
 
     func getPortofolioPerformance() {
+        financialItemsWatcher.connect()
         viewState = .loading
         portfolioRepo.fetchPortfolio()
             .receive(on: DispatchQueue.main)
@@ -44,23 +46,48 @@ class PortofolioPerformanceViewModel : ObservableObject {
                     self.viewState = .error
                 }
             } receiveValue: { portfolio in
+                self.getPortfolioItemsQuote(portfolio: portfolio)
                 self.chartViewState = .success(data: portfolio.performanceHistory)
-            //    self.watchPortfolio(portfolio: portfolio)
             }.store(in: &cancellables)
     }
-    private func watchPortfolio(portfolio: PortfolioModel){
-        stockWatcher.watchCollection(financialItems: portfolio.financialItems)
+
+    private func getPortfolioItemsQuote(portfolio: PortfolioModel){
+        let requests = portfolio.financialItems.map { item in
+            stockRepo.fetchQuote(symbol: item.symbol)
+        }
+        Publishers.MergeMany(requests)
+            .collect()
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    print(error)
-                case .finished:
-                    print("Finished")
+            .sink { completion in
+
+            } receiveValue: { symbolsWithQuotes in
+                var portfolioCurrentAmount = 0.0
+                portfolio.financialItems.forEach { item in
+                    let quote = symbolsWithQuotes.first { (symbol, quote) in
+                        item.symbol == symbol
+                    }?.1
+                    if let quoteUnwrapped = quote {
+                        portfolioCurrentAmount += quoteUnwrapped.currentPrice * item.quantityOwned
+                    }
                 }
-            }) { data in
-                self.viewState = .success(data: PortofolioPerformanceOverviewModel(currentAmount: Int(data.first!.currentPrice * 100), amountInvested: 1000) )
+                var portfolioInitialAmount = 0.0
+                portfolio.financialItems.forEach { item in
+                    portfolioInitialAmount += Double(item.purchasePrice)
+                }
+                self.viewState = .success(data: PortofolioPerformanceOverviewModel(
+                    currentAmount: Int(portfolioCurrentAmount),
+                    amountInvested: Int(portfolioInitialAmount)
+                ))
             }.store(in: &cancellables)
+
+
+    }
+
+
+    private func subscribePriceUpdates(portfolio: PortfolioModel){
+        financialItemsWatcher.subscribe(items: portfolio.financialItems) { update in
+            self.viewState = .success(data: PortofolioPerformanceOverviewModel(currentAmount: Int(update.first!.currentPrice * 100), amountInvested: 1000) )
+        }
     }
 
     func formatToUnit(amount: Int) -> String {

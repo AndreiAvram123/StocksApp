@@ -15,7 +15,7 @@ class HomePortfolioItemsViewModel : ObservableObject {
     @Injected(Container.companyRepo) var companyRepo: CompanyRepo
     @Injected(Container.stockRepo) var stockRepo: StockRepo
     @Injected(Container.logger) var logger: Logger
-    @Injected(Container.stockWatcher) var itemsWatcher: FinancialItemsWatcher
+    @Injected(Container.financialItemsWatcher) var itemsWatcher: FinancialItemsWatcher
 
     enum ViewState {
         case initial
@@ -23,6 +23,15 @@ class HomePortfolioItemsViewModel : ObservableObject {
         case success(data: [PortfolioItemModel])
         case error
     }
+
+    class SuccessDataWrapper : ObservableObject {
+        @Published var data: [PortfolioItemModel]
+
+        init(data: [PortfolioItemModel]) {
+            self.data = data
+        }
+    }
+
     private var cancellables = Set<AnyCancellable>()
     @Published var viewState: ViewState = .initial
 
@@ -86,32 +95,21 @@ class HomePortfolioItemsViewModel : ObservableObject {
         let itemsToWatch = portfolioItems.map { PlainFinancialItem(
             symbol : $0.companyProfile.ticker)
         }
-
-        itemsWatcher.watchCollection(financialItems: itemsToWatch)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case let .failure(error):
-                    print(error)
-                case .finished :
-                    print("")
+        itemsWatcher.subscribe(items: itemsToWatch) { update in
+            if case .success(let currentData) = self.viewState {
+                let newData = currentData.map { oldItem in
+                    PortfolioItemModel(
+                        companyProfile: oldItem.companyProfile,
+                        quote: oldItem.quote,
+                        priceUpdate: update.first(where: { priceUpdate in
+                            priceUpdate.symbol == oldItem.companyProfile.ticker
+                        })
+                    )
                 }
-            } receiveValue: { update in
-                if case .success(let currentData) = self.viewState {
-                    let newData = currentData.map { oldItem in
-                        PortfolioItemModel(
-                            companyProfile: oldItem.companyProfile,
-                            quote: oldItem.quote,
-                            priceUpdate: update.first(where: { priceUpdate in
-                                priceUpdate.symbol == oldItem.companyProfile.ticker
-                            })
-                        )
-                    }
-                    self.viewState = .success(data: newData)
-                    print(newData)
-                }
-            }.store(in: &cancellables)
-
+                self.viewState = .success(data: newData)
+                print(newData)
+            }
+        }
     }
 }
 class HomePortfolioItemsViewModelMock : HomePortfolioItemsViewModel {

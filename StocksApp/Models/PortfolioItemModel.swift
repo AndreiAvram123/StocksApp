@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PortfolioItemModel{
+struct PortfolioItemModel {
     let companyProfile: CompanyProfile
     let quote: StockQuote
     var priceUpdate: ItemPriceUpdate? = nil
