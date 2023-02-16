@@ -9,13 +9,20 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 
+
 struct HomePortofolioItemsOverview: View {
 
     @StateObject var viewModel: HomePortfolioItemsViewModel = HomePortfolioItemsViewModel()
 
     var body: some View {
         VStack {
-            Text("Portfolio")
+            HStack {
+                Text(R.string.localizable.homeScreenPortfolioItemsOverviewSectionTitle)
+                    .font(UIStyles.Headline.font)
+                    .foregroundColor(UIStyles.Headline.color)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+
             switch viewModel.viewState {
             case .success(let data) :
                 SuccessState(data: data)
@@ -32,16 +39,15 @@ struct HomePortofolioItemsOverview: View {
 }
 
 private struct SuccessState : View {
-    var data: [CompanyProfile]
+    var data: [HomePortfolioItemModel]
     
     var body: some View {
-        ScrollView(.horizontal){
-            HStack {
-                ForEach(data, id: \.name) { item in
+        ScrollView(.horizontal, showsIndicators: false){
+            HStack(spacing: UIStyles.Dimens.spaceLarge) {
+                ForEach(data, id: \.companyProfile.ticker) { item in
                      HomePortfolioItem(
-                        companyProfile: item,
-                        financialItemUpdate: FinancialItemQuote(currentPrice: 150, change: 20, precentageChange: 5
-                     )
+                        companyProfile: item.companyProfile,
+                        quote: item.quote
                      )
                 }
             }
@@ -53,9 +59,9 @@ struct HomePortofolioItemsOverview_Previews: PreviewProvider {
     static var successViewModel: HomePortfolioItemsViewModel {
         let viewModel = HomePortfolioItemsViewModelMock()
         viewModel.mockState = .success(data: [
-            CompanyProfile.mockInstance(),
-            CompanyProfile.mockInstance(),
-            CompanyProfile.mockInstance()
+            HomePortfolioItemModel.mockInstance,
+            HomePortfolioItemModel.mockInstance,
+            HomePortfolioItemModel.mockInstance,
         ])
         return viewModel
     }

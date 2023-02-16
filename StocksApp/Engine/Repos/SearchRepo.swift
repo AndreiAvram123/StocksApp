@@ -16,7 +16,7 @@ class SearchRepoImpl : SearchRepo {
     
     func searchByQuery(query: String) -> AnyPublisher<SearchSymbolResponse,Error>{
         let networkManager = NetworkManager()
-        let url = Constants.Search.searchSymbol(query: query)
+        let url = APIUrls.Search.searchSymbol(query: query)
          return networkManager.performRequest(requestURL: URL(string : url)!)
             .decode(type: SearchSymbolResponse.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()

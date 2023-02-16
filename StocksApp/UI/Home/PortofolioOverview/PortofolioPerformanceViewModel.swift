@@ -12,7 +12,7 @@ import Combine
 class PortofolioPerformanceViewModel : ObservableObject {
     @Injected(Container.currencyFormatter) private var currencyFormatter
     @Injected(Container.localStorage) private var localStorage
-    @Injected(Container.portfolioRepository) private var portfolioRepo
+    @Injected(Container.portfolioRepo) private var portfolioRepo
     @Injected(Container.stockWatcher) private var stockWatcher
 
     private var cancellables = Set<AnyCancellable>()

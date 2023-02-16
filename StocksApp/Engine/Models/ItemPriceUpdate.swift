@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FinancialWSUpdate : Codable, Equatable {
+struct ItemPriceUpdate : Codable, Equatable {
 
     let symbol: String
     let currentPrice: Double
@@ -18,9 +18,9 @@ struct FinancialWSUpdate : Codable, Equatable {
     }
 }
 
-extension FinancialWSUpdate {
+extension ItemPriceUpdate {
     
-    static func == (lhs: FinancialWSUpdate, rhs: FinancialWSUpdate) -> Bool {
+    static func == (lhs: ItemPriceUpdate, rhs: ItemPriceUpdate) -> Bool {
         return lhs.symbol == rhs.symbol
 
     }

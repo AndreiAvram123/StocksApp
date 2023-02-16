@@ -18,12 +18,16 @@ extension Container {
         FinancialItemsWatcher()
     }
 
-    static let portfolioRepository = Factory<PortfolioRepo> {
+    static let portfolioRepo = Factory<PortfolioRepo> {
         PortfolioRepoImpl()
     }
 
     static let companyRepo = Factory<CompanyRepo> {
         CompanyRepoImpl()
+    }
+
+    static let stockRepo = Factory<StockRepo> {
+        StockRepoImpl()
     }
 
     static let firestore = Factory<Firestore> {

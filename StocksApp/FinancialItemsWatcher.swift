@@ -16,8 +16,8 @@ class FinancialItemsWatcher {
     @Injected(Container.encoder) var encoder: JSONEncoder
     @Injected(Container.decoder) var decoder: JSONDecoder
 
-    func watchCollection(financialItems: [FinancialItem]) -> AnyPublisher<[FinancialWSUpdate], Error>  {
-        let subject = PassthroughSubject<[FinancialWSUpdate], Error>()
+    func watchCollection(financialItems: [FinancialItem]) -> AnyPublisher<[ItemPriceUpdate], Error>  {
+        let subject = PassthroughSubject<[ItemPriceUpdate], Error>()
         let request = URLRequest(url: URL(string : url)!)
         let socket = WebSocket(request: request)
         sockets.append(socket)
@@ -39,7 +39,7 @@ class FinancialItemsWatcher {
             case .text(let string):
                 do {
                     let rawUpdate = try self.decoder.decode(FinancialItemsUpdateDTO.self, from: Data(string.utf8))
-                    var update: [FinancialWSUpdate] = [FinancialWSUpdate]()
+                    var update: [ItemPriceUpdate] = [ItemPriceUpdate]()
                     rawUpdate.data.forEach { financialItem in
                         if !update.contains(financialItem) {
                             update.append(financialItem)

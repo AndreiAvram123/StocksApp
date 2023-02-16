@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import Factory
 
 protocol CompanyRepo {
     func fetchCompanyProfileBySymbol(symbol: String) -> AnyPublisher<CompanyProfile, Error>
@@ -14,12 +15,14 @@ protocol CompanyRepo {
 
 class CompanyRepoImpl : CompanyRepo {
 
+    @Injected(Container.decoder) var decoder: JSONDecoder
+
     func fetchCompanyProfileBySymbol(symbol: String) -> AnyPublisher<CompanyProfile, Error> {
         let networkManager = NetworkManager()
-        print(Constants.FinancialItems.Stocks.companyProfileBySymbol(symbol: symbol))
-        let url = URL(string: Constants.FinancialItems.Stocks.companyProfileBySymbol(symbol: symbol))!
+        print(APIUrls.FinancialItems.Stocks.companyProfileBySymbol(symbol: symbol))
+        let url = URL(string: APIUrls.FinancialItems.Stocks.companyProfileBySymbol(symbol: symbol))!
         return networkManager.performRequest(requestURL: url)
-            .decode(type: CompanyProfile.self, decoder: JSONDecoder())
+            .decode(type: CompanyProfile.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
 }

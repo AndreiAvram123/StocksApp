@@ -8,6 +8,6 @@
 import Foundation
 
 struct FinancialItemsUpdateDTO : Codable {
-    let data: [FinancialWSUpdate]
+    let data: [ItemPriceUpdate]
     let type: String
 }
